@@ -1,0 +1,34 @@
+#!/bin/bash
+
+MOTD="/etc/motd"
+BANNER_DIR="/usr/local/sbin"
+
+# Text Color Variables
+BLK="\033[00;30m"    # BLACK
+R="\033[00;31m"      # RED
+GRN="\033[00;32m"    # GREEN
+BR="\033[00;33m"     # BROWN
+BL="\033[00;34m"     # BLUW
+P="\033[00;35m"      # PURPLE
+C="\033[00;36m"      # CYAN
+LtG="\033[00;37m"    # LIGHT GRAY
+
+DkG="\033[01;30m"    # DARK GRAY
+LtR="\033[01;31m"    # LIGHT RED
+LtGRN="\033[01;32m"  # LIGHT GREEN
+Y="\033[01;33m"      # YELLOW
+LtBL="\033[01;34m"   # LIGHT BLUE
+LtP="\033[01;35m"    # LIGHT PURPLE
+LtC="\033[01;36m"    # LIGHT CYAN
+W="\033[01;37m"      # WHITE
+
+RESET="\033[0m"
+
+HEADER_HEIGHT=$(cat $BANNER_DIR/banner | wc -l)
+
+clear > $MOTD
+source $BANNER_DIR/banner
+
+sed -i "$HEADER_HEIGHT,100d" /etc/motd
+
+/usr/local/sbin/systemstats

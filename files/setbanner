@@ -1,0 +1,51 @@
+#!/bin/bash
+#
+#
+# Message of the Day filename
+MOTD="/etc/motd"
+BANNER_DIR="/usr/local/sbin"
+
+# Text Color Variables
+BLK="\033[00;30m"    # BLACK
+R="\033[00;31m"      # RED
+GRN="\033[00;32m"    # GREEN
+BR="\033[00;33m"     # BROWN
+BL="\033[00;34m"     # BLUW
+P="\033[00;35m"      # PURPLE
+C="\033[00;36m"      # CYAN
+LtG="\033[00;37m"    # LIGHT GRAY
+
+DkG="\033[01;30m"    # DARK GRAY
+LtR="\033[01;31m"    # LIGHT RED
+LtGRN="\033[01;32m"  # LIGHT GREEN
+Y="\033[01;33m"      # YELLOW
+LtBL="\033[01;34m"   # LIGHT BLUE
+LtP="\033[01;35m"    # LIGHT PURPLE
+LtC="\033[01;36m"    # LIGHT CYAN
+W="\033[01;37m"      # WHITE
+
+RESET="\033[0m"
+
+usage ()
+{
+    echo "Usage:"
+    echo "    $0 <banner-name>       (without .banner extention)"
+    echo "    $0 -l                  prints a list of existing banners"
+}
+
+
+if [ -z "$1" ]; then
+	usage
+else
+    if [ "-l" = "$1" ]; then
+        echo "Available Banners:"
+        ls -1 $BANNER_DIR/*.banner | awk -F/ '{print $NF}' | awk -F. '{print "    "$1}' 
+	elif [ -e "$BANNER_DIR/$1.banner" ]; then
+		rm -f $BANNER_DIR/banner
+		ln -s "$BANNER_DIR/$1.banner" "$BANNER_DIR/banner"
+		echo "OK"
+	else
+		echo "FAILED: $BANNER_DIR/$1.banner not found."
+		usage
+	fi
+fi

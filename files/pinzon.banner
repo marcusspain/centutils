@@ -1,0 +1,9 @@
+echo -e "" >> $MOTD
+echo -e $LtC '                    ''' >> $MOTD
+echo -e $LtC '                    '' _____ _                 ' >> $MOTD
+echo -e $LtC '                    ''|  _  |_|___ ___ ___ ___ ' >> $MOTD
+echo -e $LtC '                    ''|   __| |   |- _| . |   |' >> $MOTD
+echo -e $LtC '                    ''|__|  |_|_|_|___|___|_|_|' >> $MOTD
+echo -e $LtC '                    ''' >> $MOTD
+echo -e "" $RESET >> $MOTD
+echo -e "" >> $MOTD

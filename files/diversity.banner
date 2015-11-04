@@ -1,0 +1,11 @@
+echo -e "" >> $MOTD
+echo -e $LtC '                    ''________  .__                          .__  __' >> $MOTD
+echo -e $LtC '                    ''\______ \ |__|__  __ ___________  _____|__|/  |_ ___.__.' >> $MOTD
+echo -e $LtC '                    '' |    |  \|  \  \/ // __ \_  __ \/  ___/  \   __<   |  |' >> $MOTD
+echo -e $LtC '                    '' |    `   \  |\   /\  ___/|  | \/\___ \|  ||  |  \___  |' >> $MOTD
+echo -e $LtC '                    ''/_______  /__| \_/  \___  >__|  /____  >__||__|  / ____|' >> $MOTD
+echo -e $LtC '                    ''        \/              \/           \/          \/' >> $MOTD
+echo -e "" >> $MOTD
+echo -e $C '                      '"             An old, old wooden ship." $RESET >> $MOTD
+echo -e "" >> $MOTD
+echo -e "" >> $MOTD
