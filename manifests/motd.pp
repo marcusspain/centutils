@@ -70,6 +70,6 @@ class centutils::motd {
     	weekday     => '*',
     	user        => 'root',
     	command     => '/usr/local/sbin/updatemotd',
-    	environment => [ 'MAILTO=root', 'PATH="/usr/local/sbin"' ];
+    	environment => [ 'MAILTO=root' ];
 	}
 }
