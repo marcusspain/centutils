@@ -3,4 +3,8 @@ class centutils::vimrc {
 		ensure => 'present',
 		source => 'puppet:///modules/centutils/vimrc',
 	}
+	file { '/etc/skel/.vimrc':
+		ensure => 'present',
+		source => 'puppet:///modules/centutils/vimrc',
+	}
 }
