@@ -12,6 +12,7 @@ usage ()
 	echo "  IPTables save:      $myname -s"
 	echo "  IPTables flush:     $myname -d"
 	echo "  IPTables restart:   $myname -u"
+    echo "  watch:              $myname -w"
 }
 
 if [ -z $1 ]
@@ -44,6 +45,8 @@ else
 		echo "IPTables is has $rows DROPs"
 	elif [ "-u" = $1 ]; then
 		service iptables restart
+    elif [ "-w" = $1 ]; then
+        watch $0
 	else
 		usage
 	fi
