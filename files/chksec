@@ -6,27 +6,25 @@ myname=$( echo $0 | awk -F/ '{print $NF}')
 usage ()
 {
 	echo "Usage:"
+    echo "  show this screen:   $myname -?|h"
 	echo "  grep for string:    $myname -g <string>"
 	echo "  reset:              $myname -r"
 	echo "  list DROPs:         $myname -l"
+    echo "  watch:              $myname -w"
 	echo "  IPTables save:      $myname -s"
 	echo "  IPTables flush:     $myname -d"
 	echo "  IPTables restart:   $myname -u"
-    echo "  watch:              $myname -w"
 }
 
-if [ -z $1 ]
-then
+if [ -z $1 ]; then
 	echo "$d"
 	grep "Failed password for root" /var/log/secure | awk '{print $11}' | sort | uniq -c
 	rows=$(iptables -L -n | grep DROP | wc -l)
 	echo "IPTables is has $rows DROPs"
 else
-	if [ "-g" = $1 ] && [ -n $2 ]
-	then
+	if [ "-g" = $1 ] && [ -n $2 ]; then
 		grep $2 /var/log/secure
-	elif [ "-r" = $1 ]
-	then
+	elif [ "-r" = $1 ]; then
 		echo "$d RESET" >> /var/log/secure
 		cp -f /var/log/secure /var/log/secure.bak
 		echo "$d RESET" > /var/log/secure
@@ -47,6 +45,8 @@ else
 		service iptables restart
     elif [ "-w" = $1 ]; then
         watch $0
+    elif [ "-?" = $1 ] || [ "-h" = $1 ]; then
+        usage
 	else
 		usage
 	fi
