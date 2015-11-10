@@ -5,49 +5,49 @@ myname=$( echo $0 | awk -F/ '{print $NF}')
 
 usage ()
 {
-	echo "Usage:"
+    echo "Usage:"
     echo "  show this screen:   $myname -?|h"
-	echo "  grep for string:    $myname -g <string>"
-	echo "  reset:              $myname -r"
-	echo "  list DROPs:         $myname -l"
+    echo "  grep for string:    $myname -g <string>"
+    echo "  reset:              $myname -r"
+    echo "  list DROPs:         $myname -l"
     echo "  watch:              $myname -w"
-	echo "  IPTables save:      $myname -s"
-	echo "  IPTables flush:     $myname -d"
-	echo "  IPTables restart:   $myname -u"
+    echo "  IPTables save:      $myname -s"
+    echo "  IPTables flush:     $myname -d"
+    echo "  IPTables restart:   $myname -u"
 }
 
 if [ -z $1 ]; then
-	echo "$d"
-	grep "Failed password for root" /var/log/secure | awk '{print $11}' | sort | uniq -c
-	rows=$(iptables -L -n | grep DROP | wc -l)
-	echo "IPTables is has $rows DROPs"
+    echo "$d"
+    grep "Failed password for root" /var/log/secure | awk '{print $11}' | sort | uniq -c
+    rows=$(iptables -L -n | grep DROP | wc -l)
+    echo "IPTables is has $rows DROPs"
 else
-	if [ "-g" = $1 ] && [ -n $2 ]; then
-		grep $2 /var/log/secure
-	elif [ "-r" = $1 ]; then
-		echo "$d RESET" >> /var/log/secure
-		cp -f /var/log/secure /var/log/secure.bak
-		echo "$d RESET" > /var/log/secure
-		echo "$d RESET"
-		rows=$(iptables -L -n | grep DROP | wc -l)
-		echo "IPTables is has $rows DROPs"
-	elif [ "-l" = $1 ]; then
-		iptables -L -n | grep DROP | awk '{print "    "$4}' | sort
-		rows=$(iptables -L -n | grep DROP | wc -l)
-		echo "IPTables is has $rows DROPs"
-	elif [ "-s" = $1 ]; then
-		service iptables save
-	elif [ "-d" = $1 ]; then
-		iptables -F
-		rows=$(iptables -L -n | grep DROP | wc -l)
-		echo "IPTables is has $rows DROPs"
-	elif [ "-u" = $1 ]; then
-		service iptables restart
+    if [ "-g" = $1 ] && [ -n $2 ]; then
+        grep $2 /var/log/secure
+    elif [ "-r" = $1 ]; then
+        echo "$d RESET" >> /var/log/secure
+        cp -f /var/log/secure /var/log/secure.bak
+        echo "$d RESET" > /var/log/secure
+        echo "$d RESET"
+        rows=$(iptables -L -n | grep DROP | wc -l)
+        echo "IPTables is has $rows DROPs"
+    elif [ "-l" = $1 ]; then
+        iptables -L -n | grep DROP | awk '{print "    "$4}' | sort
+        rows=$(iptables -L -n | grep DROP | wc -l)
+        echo "IPTables is has $rows DROPs"
+    elif [ "-s" = $1 ]; then
+        service iptables save
+    elif [ "-d" = $1 ]; then
+        iptables -F
+        rows=$(iptables -L -n | grep DROP | wc -l)
+        echo "IPTables is has $rows DROPs"
+    elif [ "-u" = $1 ]; then
+        service iptables restart
     elif [ "-w" = $1 ]; then
         watch $0
     elif [ "-?" = $1 ] || [ "-h" = $1 ]; then
         usage
-	else
-		usage
-	fi
+    else
+        usage
+    fi
 fi
