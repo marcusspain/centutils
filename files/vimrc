@@ -7,3 +7,5 @@ set t_Co=8
 set t_Sf=\033[3%p1%dm
 set t_Sb=\033[4%p1%dm
 syntax on
+
+set number
