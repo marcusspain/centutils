@@ -13,9 +13,26 @@ usage ()
     echo "  reset:              $myname -r"
     echo "  list DROPs:         $myname -l"
     echo "  watch:              $myname -w"
+    echo "  allow passwd auth:  $myname -p|--passauth"
+    echo "  ssh keys only:      $myname -k|--keysonly"
     echo "  IPTables save:      $myname -s"
     echo "  IPTables flush:     $myname -d"
     echo "  IPTables restart:   $myname -u"
+}
+
+setPasswordAuthentication ()
+{
+    if [ -z $1 ]; then
+        echo "ERROR: missing argument in setPasswordAuthentication"
+    else
+        if [ "yes" = $1 ] || [ "no" = $1 ]; then
+            echo "Setting SSHD PasswordAuthentication to $1"
+            sed -i "s/^PasswordAuthentication .*/PasswordAuthentication $1/g" /etc/ssh/sshd_config
+            service sshd restart
+        else
+            echo "ERROR: invalid argument in setPasswordAuthentication"
+        fi
+    fi
 }
 
 if [ -z $1 ]; then
@@ -47,6 +64,10 @@ else
         service iptables restart
     elif [ "-w" = $1 ]; then
         watch $0
+    elif [ "-p" = $1 ] || [ "--pass" = $1 ]; then
+        setPasswordAuthentication "yes"
+    elif [ "-k" = $1 ] || [ "--keys" = $1 ]; then
+        setPasswordAuthentication "no"
     elif [ "-?" = $1 ] || [ "-h" = $1 ]; then
         usage
     else
