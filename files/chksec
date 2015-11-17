@@ -40,6 +40,7 @@ if [ -z $1 ]; then
     grep "Failed password for root" /var/log/secure | awk '{print $11}' | sort | uniq -c
     rows=$(iptables -L -n | grep DROP | wc -l)
     echo "IPTables is has $rows DROPs"
+    grep '^PasswordAuthentication' /etc/ssh/sshd_config
 else
     if [ "-g" = $1 ] && [ -n $2 ]; then
         grep $2 /var/log/secure
