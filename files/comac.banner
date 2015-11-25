@@ -1,0 +1,12 @@
+echo -e "" >> $MOTD
+echo -e "" >> $MOTD
+echo -e $LtC '                    '" ______     ______     __    __     ______     ______" >> $MOTD
+echo -e $LtC '                    '"/\  ___\   /\  __ \   /\ "-./  \   /\  __ \   /\  ___\" >> $MOTD
+echo -e $LtC '                    '"\ \ \____  \ \ \/\ \  \ \ \-./\ \  \ \  __ \  \ \ \____" >> $MOTD
+echo -e $LtC '                    '" \ \_____\  \ \_____\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\" >> $MOTD
+echo -e $LtC '                    '"  \/_____/   \/_____/   \/_/  \/_/   \/_/\/_/   \/_____/" >> $MOTD
+echo -e $LtC '                    '"" >> $MOTD
+echo -e "" >> $MOTD
+echo -e $C '                      '"Core Video Platform Infrastructure" $RESET >> $MOTD
+echo -e "" >> $MOTD
+echo -e "" >> $MOTD
