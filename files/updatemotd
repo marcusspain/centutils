@@ -26,7 +26,7 @@ RESET="\033[0m"
 
 HEADER_HEIGHT=$(cat $BANNER_DIR/banner | wc -l)
 
-clear > $MOTD
+#clear > $MOTD
 source $BANNER_DIR/banner
 
 sed -i "$HEADER_HEIGHT,100d" /etc/motd
